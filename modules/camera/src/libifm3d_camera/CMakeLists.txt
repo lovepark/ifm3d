@@ -67,6 +67,7 @@ target_compile_options(ifm3d_camera
 if(WIN32)
   target_compile_definitions(
     ifm3d_camera PRIVATE
+    ASIO_STANDALONE
     IFM3D_CAMERA_DLL_BUILD=1
     )
 endif(WIN32)
@@ -82,6 +83,7 @@ target_link_libraries(
     ${LIB_xmlrpc_client}
     ${LIB_xmlrpcxx}
     ${LIB_xmlrpc}
+    $<BUILD_INTERFACE:asio>
   )
 
 set_target_properties(

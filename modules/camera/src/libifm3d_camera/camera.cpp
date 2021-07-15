@@ -20,6 +20,7 @@
 #include <ifm3d/camera/version.h>
 #include <ifm3d/camera/util.h>
 #include <camera_impl.hpp>
+#include <discovery.hpp>
 
 //================================================
 // Public constants
@@ -175,6 +176,26 @@ RO_LUT=
   };
 // clang-format on
 
+//================================================
+// Function for Searching Devices on Network
+//================================================
+
+std::vector<ifm3d::IFMNetworkDevice>
+ifm3d::Camera::DeviceDiscovery()
+{
+  ifm3d::IFMDeviceDiscovery ifm_discovery;
+  auto devices = ifm_discovery.SearchDevices();
+  return devices;
+}
+
+std::vector<ifm3d::IFMNetworkDevice>
+ifm3d::Camera::SetTempIpAddress(const std::string& dev_mac,
+                                const std::string& temp_ip)
+{
+  ifm3d::IFMDeviceDiscovery ifm_discovery;
+  auto devices = ifm_discovery.SetTempIpaddress(dev_mac, temp_ip);
+  return devices;
+}
 //================================================
 // Factory function for making cameras
 //================================================
